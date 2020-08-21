@@ -19,6 +19,7 @@ export default function OrderComplete(props){
                      <div className="orderTitle">Size:</div>
                      <div className="orderText">{item.size}</div>
                      <div className="orderTitle">Toppings:</div>
+                     {item.glutenFreeCrust ? <div className="orderText">Gluten Free Crust</div>:null}
                      {item.pepperoni ? <div className="orderText">Pepperoni</div>:null}
                      {item.sausage ? <div className="orderText">Sausage</div>:null}
                      {item.canadianBecon ? <div className="orderText">Canadian Becon</div>:null}

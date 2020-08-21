@@ -9,6 +9,9 @@ describe("Test form inputs", () => {
             cy.get('[data-cy="sizeSelect"]').select('Medium')
     })
     it("Testing check boxes", () =>{
+        cy.get('input[name="glutenFreeCrust"]')
+        .check()
+        .should("be.checked");
         cy.get('input[name="pepperoni"]')
             .check()
             .should("be.checked");

@@ -14,6 +14,7 @@ export default function Form(props){
     const formSchema = yup.object().shape({
         name: yup.string().required("Please enter name").min(2,"Name must be longer than 2 characters"),
         size: yup.string(),
+        glutenFreeCrust: yup.boolean().defined(),
         pepperoni: yup.boolean().defined(),
         sausage: yup.boolean().defined(),
         canadianBacon: yup.boolean().defined(),
@@ -35,6 +36,7 @@ export default function Form(props){
     const [formState,setFormState] = useState({
         name:"",
         size:"",
+        glutenFreeCrust:false,
         pepperoni: false,
         sausage: false,
         canadianBacon: false,
@@ -57,6 +59,7 @@ export default function Form(props){
     const [errorState, setErrorState] = useState({
         name: "",
         size:"",
+        glutenFreeCrust: false,
         pepperoni: false,
         sausage: false,
         canadianBacon: false,
@@ -165,10 +168,24 @@ export default function Form(props){
 
             <br />
 
+            {/* Gluten Free Crust */}
+
+            <label htmlFor='glutenFreeCrust'>
+                    <input
+                        type='checkbox'
+                        name='glutenFreeCrust'
+                        id='glutenCheckBox'
+                        checked={formState.glutenFreeCrust}
+                        onChange={inputChange}
+                    />
+                    Gluten Free Crust
+                </label>
+                <br />
+
             {/* Toppings */}
 
             <div className='toppingsChecklist'>
-            <p>Add Toppings</p>
+            <h1>Add Toppings</h1>
 
             <th>
 
