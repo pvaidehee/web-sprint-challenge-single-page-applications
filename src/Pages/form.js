@@ -201,7 +201,7 @@ export default function Form(props){
                         type='checkbox'
                         name='canadianBacon'
                         id='canadianCheckBox'
-                        checked={formState.canadianSausage}
+                        checked={formState.canadianBecon}
                         onChange={inputChange}
                     />
                     Canadian Bacon

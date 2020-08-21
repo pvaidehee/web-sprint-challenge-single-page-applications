@@ -7,7 +7,7 @@ export default function OrderComplete(props){
     return(
         <>
 
-            <Header head="Your Order is on the way"
+            <Header head="Congrats! Pizza is on it's way!!"
 
 
             />
@@ -21,7 +21,7 @@ export default function OrderComplete(props){
                      <div className="orderTitle">Toppings:</div>
                      {item.pepperoni ? <div className="orderText">Pepperoni</div>:null}
                      {item.sausage ? <div className="orderText">Sausage</div>:null}
-                     {item.canadianSausage ? <div className="orderText">Canadian Sausage</div>:null}
+                     {item.canadianBecon ? <div className="orderText">Canadian Becon</div>:null}
                      {item.spicyItalianSausage ? <div className="orderText">Spice Italian Sausage</div>:null}
                      {item.grilledChicken ? <div className="orderText">Grilled Chicken</div>:null}
                      {item.greenPeppers ? <div className="orderText">Green Peppers</div>:null}
