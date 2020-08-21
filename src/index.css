@@ -125,15 +125,14 @@ html {
 form {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  max-width: 300px;
+  width: 50%;
   margin: 0 auto;
 }
 label {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 10px 0;
+  margin: 10px;
   font-size: 1.4rem;
 }
 input,
