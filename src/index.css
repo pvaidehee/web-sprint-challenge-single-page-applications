@@ -167,6 +167,7 @@ input:placeholder {
 }
 button {
   width: 200px;
+  height:40px;
   font-size: 1.2rem;
   border: 0;
   border-radius: 5px;
