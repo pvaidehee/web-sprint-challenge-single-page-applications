@@ -14,10 +14,20 @@ export default function Form(props){
     const formSchema = yup.object().shape({
         name: yup.string().required("Please enter name").min(2,"Name must be longer than 2 characters"),
         size: yup.string(),
-        pepperoni: yup.boolean(),
-        sausage: yup.boolean(),
-        onions: yup.boolean(),
-        pineapple: yup.boolean(),
+        pepperoni: yup.boolean().defined(),
+        sausage: yup.boolean().defined(),
+        canadianBacon: yup.boolean().defined(),
+        spicyItalianSausage: yup.boolean().defined(),
+        grilledChicken: yup.boolean().defined(),
+        onions: yup.boolean().defined(),
+        greenPeppers: yup.boolean().defined(),
+        dicedTomatos: yup.boolean().defined(),
+        blackOlives: yup.boolean().defined(),
+        roastedGarlic: yup.boolean().defined(),
+        artichokeHearts: yup.boolean().defined(),
+        threeCheese: yup.boolean().defined(),
+        pineapple: yup.boolean().defined(),
+        extraCheese: yup.boolean().defined(),
         instructions: yup.string()
 
 
@@ -25,10 +35,21 @@ export default function Form(props){
     const [formState,setFormState] = useState({
         name:"",
         size:"",
-        pepperoni:false,
-        sausage:false,
-        onions:false,
-        pineapple:false,
+        pepperoni: false,
+        sausage: false,
+        canadianBacon: false,
+        spicyItalianSausage: false,
+        grilledChicken: false,
+        onions: false,
+        greenPeppers: false,
+        dicedTomatos: false,
+        blackOlives: false,
+        roastedGarlic: false,
+        artichokeHearts: false,
+        threeCheese: false,
+        pineapple: false,
+        extraCheese: false,
+
         instructions:"",
         amount:0,
     });
@@ -36,7 +57,22 @@ export default function Form(props){
     const [errorState, setErrorState] = useState({
         name: "",
         size:"",
-        sauce:""
+        pepperoni: false,
+        sausage: false,
+        canadianBacon: false,
+        spicyItalianSausage: false,
+        grilledChicken: false,
+        onions: false,
+        greenPeppers: false,
+        dicedTomatos: false,
+        blackOlives: false,
+        roastedGarlic: false,
+        artichokeHearts: false,
+        threeCheese: false,
+        pineapple: false,
+        extraCheese: false,
+        
+        instructions:""
     });
 
     const validate = e =>{
@@ -68,6 +104,12 @@ export default function Form(props){
             .catch(err => console.log(err));
     };
 
+    const [total, setTotal] = useState(0);
+
+    const addTotal = (x) =>{
+        setTotal(total + x);
+    }
+
 
     const inputChange = e =>{
         e.persist();
@@ -81,13 +123,17 @@ export default function Form(props){
     return(
 
         <>
-        <Header head="You order that pizza" tail="you deserve it"/>
+        <Header head="You deserve that pizza" tail="go get it!!!"/>
 
         <form onSubmit={formSubmit} className="pizzaForm" >
 
-            <label htmlFor="name">
-
-                Name
+        <h1>Build Your Own Pizza</h1>
+            <label htmlFor='name' id="customerName">
+                Customer's Name
+                <br />
+                <span>Required</span>
+                </label>
+                <br />
 
                 <input
                     type="text"
@@ -97,84 +143,208 @@ export default function Form(props){
                     onChange={inputChange}
                 />
 
-            </label>
 
             {errorState.name.length > 2 ? (
                 <p className="error">{errorState.name}</p>
             ) : null}
+            <br/>
 
-            <label htmlFor="size">
-                   Choice of Size
-
-                <select
-                    name="size"
-                    id="size"
-                    value={formState.size}
-                    onChange={inputChange}
-                    >
-                    <option value="Small">Small</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Large">Large</option>
-
+            <label htmlFor='size' id="sizeID">
+                Choice of Size
+                <br />
+                <span>Required</span>
+                </label>
+                <br />
+                <select name='size' data-cy="sizeSelect" id='sizeinput' onChange={inputChange}>
+                    <option value="" disabled selected>Choose a size</option>
+                    <option name="SM" value='small'>Small</option>
+                    <option name="MD" value='medium'>Medium</option>
+                    <option name="LG" value='large'>Large</option>
+                    <option name="XL" value='extraL'>Extra Large</option>
                 </select>
 
-            </label>
+            <br />
 
-            <label htmlFor="pepperoni">
+            {/* Toppings */}
 
-                <input
-                    type ="checkbox"
-                    id = "pepperoni"
-                    name = "pepperoni"
-                    checked ={formState.pepperoni}
-                    onChange={inputChange}
-                />
+            <div className='toppingsChecklist'>
+            <p>Add Toppings</p>
 
-                Pepperoni
+            <th>
 
-            </label>
+            <label htmlFor='pepperoni'>
+                    <input
+                        type='checkbox'
+                        name='pepperoni'
+                        id='pepperoniCheckBox'
+                        checked={formState.pepperoni}
+                        onChange={inputChange}
+                    />
+                    Pepperoni
+                </label>
+                <br />
 
-            <label htmlFor="sausage">
+                <label htmlFor='sausage'>
+                    <input
+                        type='checkbox'
+                        name='sausage'
+                        id='sausageCheckBox'
+                        checked={formState.sausage}
+                        onChange={inputChange}
+                    />
+                    Sausage
+                </label>
+                <br />
 
-                <input
-                    type ="checkbox"
-                    id = "sausage"
-                    name = "sausage"
-                    checked ={formState.sausage}
-                    onChange={inputChange}
-                />
+                <label htmlFor='canadianBacon'>
+                    <input
+                        type='checkbox'
+                        name='canadianBacon'
+                        id='canadianCheckBox'
+                        checked={formState.canadianSausage}
+                        onChange={inputChange}
+                    />
+                    Canadian Bacon
+                </label>
+                <br />
 
-                Sausage
+                <label htmlFor='spicyItalianSausage'>
+                    <input
+                        type='checkbox'
+                        name='spicyItalianSausage'
+                        id='spicyItalianSausageCheckBox'
+                        data-cy='spicyItalianSausage'
+                        checked={formState.spicyItalianSausage}
+                        onChange={inputChange}
+                    />
+                    Spicy Italian Sausage
+                </label>
+                <br />
 
-            </label>
+                <label htmlFor='grilledChicken'>
+                    <input
+                        type='checkbox'
+                        name='grilledChicken'
+                        id='grilledChickenCheckBox'
+                        checked={formState.grilledChicken}
+                        onChange={inputChange}
+                    />
+                    Grilled Chicken
+                </label>
+                <br />
 
-            <label htmlFor="onions">
+                <label htmlFor="onions">
+                  <input 
+                  type='checkbox'
+                  name='onions'
+                  id='onionsCheckBox'
+                  checked={formState.onions}
+                  onChange={inputChange}
+                  />
+                  Onions
+                </label>
+                <br />
 
-                <input
-                    type ="checkbox"
-                    id = "onions"
-                    name = "onions"
-                    checked ={formState.onions}
-                    onChange={inputChange}
-                />
+                <label htmlFor="greenPeppers">
+                  <input 
+                  type='checkbox'
+                  name='greenPeppers'
+                  id='greenPeppersCheckBox'
+                  checked={formState.greenPeppers}
+                  onChange={inputChange}
+                  />
+                  Green Peppers
+                </label>
+                <br />
+                </th>
 
-                Onions
+                <th>
 
-            </label>
+                <label htmlFor="dicedTomatos">
+                  <input 
+                  type='checkbox'
+                  name='dicedTomatos'
+                  id='tomatosCheckBox'
+                  checked={formState.dicedTomatos}
+                  onChange={inputChange}
+                  />
+                  Diced Tomatos
+                </label>
+                <br />
 
-            <label htmlFor="pineapple">
+                <label htmlFor="blackOlives">
+                  <input 
+                  type='checkbox'
+                  name='blackOlives'
+                  id='blackOlivesCheckBox'
+                  checked={formState.blackOlives}
+                  onChange={inputChange}
+                  />
+                  Black Olives
+                </label>
+                <br />
 
-                <input
-                    type ="checkbox"
-                    id = "pineapple"
-                    name = "pineapple"
-                    checked ={formState.pineapple}
-                    onChange={inputChange}
-                />
+                <label htmlFor="roastedGarlic">
+                  <input 
+                  type='checkbox'
+                  name='roastedGarlic'
+                  id='roastedGarlicCheckBox'
+                  checked={formState.roastedGarlic}
+                  onChange={inputChange}
+                  />
+                  Roasted Garlic
+                </label>
+                <br />
 
-                Pineapple
+                <label htmlFor="artichokeHearts">
+                  <input 
+                  type='checkbox'
+                  name='artichokeHearts'
+                  id='artichokeHeartsCheckBox'
+                  checked={formState.articokeHearts}
+                  onChange={inputChange}
+                  />
+                  Artichoke Hearts
+                </label>
+                <br />
 
-            </label>
+                <label htmlFor="threeCheese">
+                  <input 
+                  type='checkbox'
+                  name='threeCheese'
+                  id='threeCheeseCheckBox'
+                  checked={formState.threeCheese}
+                  onChange={inputChange}
+                  />
+                  Three Cheese
+                </label>
+                <br />
+
+                <label htmlFor="pineapple">
+                  <input 
+                  type='checkbox'
+                  name='pineapple'
+                  id='pineappleCheckBox'
+                  checked={formState.pineapple}
+                  onChange={inputChange}
+                  />
+                  Pineapple
+                </label>
+                <br />
+
+
+                <label htmlFor='extraCheese'>
+                    <input
+                        type='checkbox'
+                        name='extraCheese'
+                        id='cheeseCheckBox'
+                        checked={formState.cheese}
+                        onChange={inputChange}
+                    />
+                    Extra Cheese
+                </label>
+            </th>
+            </div>
 
             <label htmlFor="instructions">
                 Special Instructions
@@ -187,10 +357,6 @@ export default function Form(props){
             </label>
 
             <button type='submit'>Submit</button>
-
-
-
-
 
         </form>
 
