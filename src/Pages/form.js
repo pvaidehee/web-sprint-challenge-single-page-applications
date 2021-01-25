@@ -107,11 +107,11 @@ export default function Form(props){
             .catch(err => console.log(err));
     };
 
-    const [total, setTotal] = useState(0);
+    //const [total, setTotal] = useState(0);
 
-    const addTotal = (x) =>{
-        setTotal(total + x);
-    }
+    // const addTotal = (x) =>{
+    //     setTotal(total + x);
+    // }
 
 
     const inputChange = e =>{
